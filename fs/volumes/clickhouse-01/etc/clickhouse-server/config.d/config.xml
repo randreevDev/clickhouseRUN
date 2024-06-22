@@ -31,7 +31,7 @@
                 </replica>
                 <replica>
                     <host>clickhouse-02</host>
-                    <port>9000</port>
+                    <port>9001</port>
                 </replica>
             </shard>
         </cluster_1S_2R>
