@@ -15,7 +15,7 @@ services:
       - ./fs/volumes/clickhouse-01/etc/clickhouse-server/config.d/config.xml:/etc/clickhouse-server/config.d/config.xml
       - ./fs/volumes/clickhouse-01/etc/clickhouse-server/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
       - ./fs/volumes/clickhouse-01/var/lib/clickhouse:/var/lib/clickhouse/
-      - ./fs/volumes/clickhouse-01/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+#      - ./fs/volumes/clickhouse-01/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
 #      - ./fs/volumes/clickhouse-01/var/log/clickhouse-server:/var/log/clickhouse-server
     ports:
       - "127.0.0.1:8123:8123"
@@ -32,7 +32,7 @@ services:
       - ./fs/volumes/clickhouse-02/etc/clickhouse-server/config.d/config.xml:/etc/clickhouse-server/config.d/config.xml
       - ./fs/volumes/clickhouse-02/etc/clickhouse-server/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
       - ./fs/volumes/clickhouse-02/var/lib/clickhouse:/var/lib/clickhouse/
-      - ./fs/volumes/clickhouse-01/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+#      - ./fs/volumes/clickhouse-01/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
 #      - ./fs/volumes/clickhouse-02/var/log/clickhouse-server:/var/log/clickhouse-server
     ports:
       - "127.0.0.1:8124:8124"
