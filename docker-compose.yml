@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+
+  zookeeper:
+    image: zookeeper:3.7
+    container_name: zookeeper
+    hostname: zookeeper
+
+  clickhouse-01:
+    image: "clickhouse/clickhouse-server:23.4"
+    user: "101:101"
+    container_name: clickhouse-01
+    hostname: clickhouse-01
+    volumes:
+      - ./fs/volumes/clickhouse-01/etc/clickhouse-server/config.d/config.xml:/etc/clickhouse-server/config.d/config.xml
+      - ./fs/volumes/clickhouse-01/etc/clickhouse-server/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
+      - ./fs/volumes/clickhouse-01/var/lib/clickhouse:/var/lib/clickhouse/
+      - ./fs/volumes/clickhouse-01/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+#      - ./fs/volumes/clickhouse-01/var/log/clickhouse-server:/var/log/clickhouse-server
+    ports:
+      - "127.0.0.1:8123:8123"
+      - "127.0.0.1:9000:9000"
+    depends_on:
+      - zookeeper
+
+  clickhouse-02:
+    image: "clickhouse/clickhouse-server:23.4"
+    user: "101:101"
+    container_name: clickhouse-02
+    hostname: clickhouse-02
+    volumes:
+      - ./fs/volumes/clickhouse-02/etc/clickhouse-server/config.d/config.xml:/etc/clickhouse-server/config.d/config.xml
+      - ./fs/volumes/clickhouse-02/etc/clickhouse-server/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
+      - ./fs/volumes/clickhouse-02/var/lib/clickhouse:/var/lib/clickhouse/
+      - ./fs/volumes/clickhouse-01/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+#      - ./fs/volumes/clickhouse-02/var/log/clickhouse-server:/var/log/clickhouse-server
+    ports:
+      - "127.0.0.1:8124:8124"
+      - "127.0.0.1:9001:9001"
+    depends_on:
+      - zookeeper
