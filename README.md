@@ -218,5 +218,5 @@
 ~~~~sql
     SELECT *
     FROM system.mutations
-    WHERE is_done = 0 AND table ='log_stydurunner';
+    WHERE is_done = 0 AND table ='test';
 ~~~~
